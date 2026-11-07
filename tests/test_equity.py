@@ -24,7 +24,9 @@ def test_shared_royal_flush_is_a_split_pot():
 def test_equity_is_between_zero_and_one_for_unknown_opponent():
     equity = calculate_equity(
         hero_cards=["As", "Kd"],
-        board=["Qs", "7c", "2h"],
+        # Four known board cards keep exact enumeration fast while leaving
+        # the opponent's hand and river unknown.
+        board=["Qs", "7c", "2h", "3d"],
         villain_cards=None,
     )
     assert 0.0 <= equity <= 1.0
